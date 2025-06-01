@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Edit Employee {{ employee.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    
+    <ion-item>
+      <ion-label position="stacked">Role</ion-label>
+      <ion-select [(ngModel)]="employee.role">
+        <ion-select-option *ngFor="let key of roleKeys" [value]="Roles[key]">
+          {{ Roles[key] }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" color="primary" (click)="updateRole()">
+    <ion-icon slot="start" name="save"></ion-icon>
+    Save Changes
+  </ion-button>
+  <ion-button expand="full" color="danger" (click)="removeEmployee()">
+    <ion-icon slot="start" name="trash"></ion-icon>
+    Remove Employee
+  </ion-button>
+</ion-content>

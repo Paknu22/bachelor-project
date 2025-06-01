@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goToCase()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">R1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">R1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div style="padding: 16px;">
+<ion-card class="description-card">
+      <ion-card-header>
+      <ion-card-title class="group-label">Description:</ion-card-title>
+    </ion-card-header>
+  <ion-card-content>
+    <ion-item class="description-text" lines="none">
+      <ion-textarea
+        class="text-input"
+        [(ngModel)]="descriptionText"
+        placeholder="Please write a description for the task at hand">
+      </ion-textarea>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+
+  <ion-card class="radio-group-card">
+    <ion-card-header>
+      <ion-card-title class="group-label">Choose registration type:</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="registrationType">
+        <ion-item lines="none" class="radio-item">
+          <ion-label>Supervision</ion-label>
+          <ion-radio slot="start" value="Supervision"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="radio-item">
+          <ion-label>Error</ion-label>
+          <ion-radio slot="start" value="Error"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="radio-item">
+          <ion-label>Documentation</ion-label>
+          <ion-radio slot="start" value="Documentation"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="price-card" *ngIf="isPriceActive">
+    <ion-card-header>
+      <ion-card-title class="group-label">Input the price:</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-input type="number" inputmode="decimal" [(ngModel)]="price"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+    
+    <ion-button expand="full" color="secondary" (click)="takePicture()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Take Pictures
+    </ion-button>
+
+    <app-image-display [images]="images" (imagesChange)="images = $event"></app-image-display>
+
+    <app-accordion
+      [accordionTitle]="blueprintAccordionTitle" 
+      [data]="blueprintAccordionData"
+      (itemClicked)="clickBlueprint($event)">
+    </app-accordion>
+
+    <div style="text-align: center; margin-top: 16px; margin-bottom: 16px;">
+      <app-blueprint-static-viewer
+        *ngIf="selectedBlueprintPath"
+        [imageSrc]="selectedBlueprintPath"
+        [marker]="selectedBlueprintPoint">
+      </app-blueprint-static-viewer>
+    </div>
+
+    <app-accordion [accordionTitle]="userLogsAccordionTitle" [data]="changeLogAccordionData"></app-accordion>
+
+    <ion-button expand="full" color="secondary" style="margin-top: 16px;" (click)="saveTask()">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Save
+    </ion-button>
+  </div>
+
+  <app-pull-to-refresh [refreshFn]="refreshPage.bind(this)"></app-pull-to-refresh>
+</ion-content>

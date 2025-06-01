@@ -1,0 +1,8 @@
+{
+  "name": "Soft-Tool",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "68ba0b8b"
+}

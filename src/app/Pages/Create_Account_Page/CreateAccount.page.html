@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="createAccount()">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="password" name="password" type="password" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" class="OBS-text">
+        <p>Password must include uppercase and lowercase letters, at least one number, and a special character.</p>
+      </ion-text>
+     <div id="hcaptcha-container" style="display: flex; justify-content: center; align-items: center; margin: 20px 0;"> </div>
+
+
+    <ion-button expand="block" type="submit">Create Account</ion-button>
+  </form>
+
+    <app-pull-to-refresh [refreshFn]="refreshPage.bind(this)"></app-pull-to-refresh>
+</ion-content>

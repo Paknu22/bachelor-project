@@ -1,0 +1,11 @@
+ion-item{
+    --background: var(--input);
+}
+
+ion-item:hover{
+    --background: var(--highlight-input);
+}
+
+ion-item:active{
+    --background: var(--clicked-input);
+}

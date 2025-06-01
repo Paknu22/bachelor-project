@@ -1,0 +1,96 @@
+<app-burger-menu
+  [menuId]="'case-menu'"
+  [contentId]="'case-content'"
+  [menuItems]="menuItems"
+></app-burger-menu>
+
+<ion-header>
+  <ion-toolbar 
+    color="primary" 
+    [class.toolbar-white-text]="true" 
+    style="text-align: center;"
+  >
+    <ion-buttons slot="start">
+      <ion-button (click)="navTo('/main-menu')">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ showPdfSelectionCol ? 'Print Report' : this.caseTitle }}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-menu-button menu="case-menu"></ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="case-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Case Page</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="headers-content">
+    <ion-title style="text-align: center;">{{ showPdfSelectionCol ? 'Choose Registrations to Print' : 'Registrations' }}</ion-title>
+  </div> <br>
+
+  <div class="table-container">
+    <table class="clean-table">
+      <thead>
+        <tr>
+          <th *ngIf="showPdfSelectionCol" class="select-col">
+            <app-multiple-selection 
+            [selectionKey]="'tags'"
+            [selected]="selectedTags"
+            (selectionChanged)="OnTagsSelectionChanged($event)">
+          </app-multiple-selection>
+          </th>
+          <th class="nowrap">ID</th>
+          <th class="nowrap">Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr 
+          *ngFor="let item of data; let i = index" 
+          [routerLink]="['/case', caseId, 'task', item.id]" 
+          class="clickable-row">          
+          <td *ngIf="showPdfSelectionCol" 
+          class="select-col"
+          (click)="ToggleCheckbox(item, $event)">
+          <ion-checkbox
+          [checked]="item.selected"
+          (ionFocus)="$event.stopPropagation()"
+          (ionBlur)="$event.stopPropagation()"
+        ></ion-checkbox>
+          </td>
+          <td class="nowrap"> R{{ i + 1 }}</td>
+          <td class="nowrap">{{ item.type }}</td>
+          <td>{{ item.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+
+  <div class="button-wrapper">
+    <div class="add-task-btn">
+      <ion-button class="big-btn" (click)="showPdfSelectionCol ? generatePdf() : addTask()">
+        <ng-container *ngIf="showPdfSelectionCol; else addIcon">
+          PRINT
+        </ng-container>
+        <ng-template #addIcon>
+          <ion-icon name="add"></ion-icon>
+        </ng-template>
+      </ion-button>      
+    </div>
+    <div class="pdf-btn-div">
+      <ion-button class="pdf-btn" (click)="TogglePdfSelectionCol()">
+        <ion-icon name="document"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <app-pull-to-refresh [refreshFn]="refreshPage.bind(this)"></app-pull-to-refresh>
+</ion-content>

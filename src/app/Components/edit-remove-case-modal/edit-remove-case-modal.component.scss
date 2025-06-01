@@ -1,0 +1,12 @@
+.content{
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+}
+
+.border {
+    --border-style: solid;
+    --border-width: 1px;
+    --border-color: #ccc;
+    border-radius: 16px;
+    padding: 8px; /* Optional for spacing */
+  }

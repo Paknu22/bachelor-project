@@ -1,0 +1,12 @@
+<ion-list>
+  <ion-item *ngFor="let file of images; let i = index">
+    <!--  IF WE WANT TO DISPLAY IMAGE -->
+    <ion-thumbnail slot="start">
+      <img [src]="file.data || file.path" [alt]="file.name" />
+
+    </ion-thumbnail>
+  
+    <ion-label class="ion-text-wrap"> {{ file.name }} </ion-label>
+
+  </ion-item>
+</ion-list>

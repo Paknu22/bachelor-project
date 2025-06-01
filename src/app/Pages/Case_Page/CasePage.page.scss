@@ -1,0 +1,111 @@
+.headers-content{
+    margin-top: 30px;
+}
+
+.toolbar-white-text {
+  --ion-toolbar-color: #ffffff !important;
+  --color: #ffffff !important; /* fallback for older Ionic */
+}
+
+.table-container {
+  max-height: calc(98vh - 200px); /* Leave room for header + buttons */
+  overflow-y: auto;
+  padding-bottom: 50px; /* Space between last row and bottom */
+  padding: 0px 10px 0px;
+}
+
+.clean-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.clean-table th,
+.clean-table td {
+  border: 1px solid rgb(158, 158, 158);
+  padding: 12px;
+  text-align: left;
+}
+
+
+.clean-table th.select-col,
+.clean-table td.select-col {
+  width: 1px;
+  white-space: nowrap;
+  padding: 0px 0px; /* minimal horizontal padding */
+  text-align: center;
+}
+
+.clean-table .nowrap {
+  white-space: nowrap;
+}
+
+.clean-table .nowrap {
+  white-space: nowrap; 
+  width: 1px;
+}
+
+.clean-table thead tr {
+  background-color: #3880ff;
+  color: var(--input);
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: var(--input);
+}
+
+.clickable-row:hover {
+  background-color: var(--highlight-input);
+}
+
+.clickable-row:active {
+  background-color: #e0e0e0;
+}
+
+.button-wrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  gap: 20px;
+}
+
+.add-task-btn {
+  position: relative;
+  display: inline-block;
+}
+
+.add-task-btn ion-button {
+  position: relative;
+  z-index: 2;
+}
+
+.pdf-btn {
+  position: absolute;
+
+  font-size: 30px;
+  --padding-start: 15px;
+  --padding-end: 15px;
+}
+
+.pdf-btn-div {
+  position: absolute;
+  left: 200px;
+  bottom: 64px;
+  z-index: 1001;
+}
+
+.big-btn {
+  font-size: 30px;
+
+  --border-radius: 8px;
+  --padding-start: 24px;
+  --padding-end: 24px;
+  --height-max: 50px;
+}
+
+

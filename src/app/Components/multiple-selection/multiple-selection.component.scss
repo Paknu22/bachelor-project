@@ -1,0 +1,8 @@
+::ng-deep ion-select::part(text) {
+    display: none !important;
+  }
+  
+  ::ng-deep ion-select::part(placeholder) {
+    opacity: 1 !important;
+  }
+  

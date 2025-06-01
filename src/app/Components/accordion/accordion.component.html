@@ -1,0 +1,18 @@
+<ion-accordion-group [multiple]="true">
+  <ion-accordion>
+    <ion-item slot="header" color="secondary">
+      <ion-label>{{ accordionTitle }}</ion-label>
+    </ion-item>
+    <div class="content-wrapper" slot="content">
+      <ng-container *ngFor="let item of data">
+        <ion-item button (click)="handleClick(item)">
+          <ion-label>
+            <ng-container *ngFor="let block of item.content">
+                <span>{{ block.value }}</span>
+            </ng-container>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>

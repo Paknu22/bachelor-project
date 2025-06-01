@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Create Case</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <ion-list>
+      <ion-item class="border">
+        <ion-label position="floating">Case Title</ion-label>
+        <ion-input #caseTitleInput type="text"></ion-input>
+      </ion-item>
+      <ion-button expand="full" color="secondary" (click)="AddBluePrint()">
+        <ion-icon slot="start" name="document"></ion-icon>
+        Add Blueprint
+      </ion-button>
+
+      <app-file-display [images]="images" (imagesChange)="images = $event"></app-file-display>
+
+
+      <ion-item>
+        <ion-select class="border"
+          aria-label="AdditionalTasks"
+          [compareWith]="compareWith"
+          placeholder="Set Up Tasks"
+          (ionChange)="handleChange($event)"
+          [multiple]="true"
+        >
+          @for (task of additionalTasks; track task) {
+          <ion-select-option [value]="task">{{ task.name }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="secondary" (click)="addOrRemoveEmployees()">
+            <ion-icon slot="start" name="person"></ion-icon>
+            Add
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" 
+          [color]="isAllSelected ? 'danger' : 'secondary'" 
+          (click)="addOrRemoveAll()">
+            <ion-icon slot="start" name="people"></ion-icon>
+            {{ isAllSelected ? 'REMOVE ALL' : 'ADD ALL' }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button expand="full" color="secondary" (click)="SaveCaseToDatabase()">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Save
+    </ion-button>
+  </div>
+</ion-content>

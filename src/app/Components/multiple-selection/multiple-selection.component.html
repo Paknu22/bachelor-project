@@ -1,0 +1,14 @@
+<ion-item color="secondary">
+  <ion-select
+    interface="popover"
+    [multiple]="true"
+    [value]="selected"
+    (ionChange)="handleChange($event)"
+    [compareWith]="compareWith"
+    label="Select"
+  >
+    @for (item of items; track item.value) {
+      <ion-select-option [value]="item">{{ item.text }}</ion-select-option>
+    }
+  </ion-select>
+</ion-item>

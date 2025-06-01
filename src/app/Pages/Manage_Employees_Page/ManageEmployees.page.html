@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Manage Employees
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Manage Employees</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search for employee" 
+      (ionInput)="onSearchChange($event)">
+    </ion-searchbar>
+  </div>
+
+
+  <div class="ion-padding">
+    <ion-list>
+        <ion-item class="item-list" *ngFor="let employee of filteredEmployees">
+          <ion-label>
+          <h2>{{ employee.name }}</h2>
+          <p>{{ employee.email }}</p>
+          <p>{{ employee.role }}</p>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button color="warning" (click)="openEditRemoveModal(employee)">
+              <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+    </ion-list>  
+  </div>
+</ion-content>

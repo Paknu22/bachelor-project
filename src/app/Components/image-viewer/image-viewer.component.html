@@ -1,0 +1,16 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Blueprint Viewer</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <canvas #canvas 
+    [attr.width]="img.width" [attr.height]="img.height"
+    [style.width.px]="img.width" [style.height.px]="img.height">
+  </canvas>
+
+</ion-content>

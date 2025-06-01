@@ -1,0 +1,39 @@
+.logo-img {
+    width: 30%;
+    height: auto;
+    display: block;
+    max-width: 200px;
+    margin: 100px auto 20px auto; 
+  }
+
+
+.login-button-container{
+  display: flex;
+  justify-content: center;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+ion-item {
+  --background: var(--input);
+  --highlight-color-focused: #4b3a3a;
+  border-radius: 6px;
+}
+
+.login-form ion-item,
+.login-form ion-button {
+    width: 100%;
+    max-width: 600px;
+}
+
+ion-button{
+  padding-top: 10px;
+  height: 50px;
+}

@@ -1,0 +1,55 @@
+<app-burger-menu
+  [menuId]="'home-menu'"
+  [contentId]="'home-content'"
+  [menuItems]="menuItems"
+></app-burger-menu>
+
+<ion-header>
+  <ion-toolbar color="primary" style="text-align: center;">
+    <ion-buttons slot="start">
+      <ion-button *ngIf="isSuperUser" (click)="openAddEmployeeModal()">
+        <ion-icon slot="icon-only" name="person-add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Welcome, {{ userName }}</ion-title>
+    
+    <ion-buttons slot="end">
+      <ion-menu-button menu="home-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="home-content">
+  
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Search for case" 
+      (ionInput)="onSearchChange($event)">
+    </ion-searchbar>
+  </div>
+
+  <div class="case-list">
+    <ion-list>
+        <ion-title class="case-label">Active Cases</ion-title>
+    
+
+
+      
+      <!-- Dynamic cases -->
+      <ion-item *ngFor="let caseItem of filteredCases" button detail="false" (click)="goToCase(caseItem.id)" class="card">
+        <ion-label>{{ caseItem.title }}</ion-label>
+        <ion-buttons slot="end">
+           <ion-button 
+            *ngIf="canShowCaseOptions" 
+            (click)="openCaseOptions(caseItem, $event)">
+            <ion-icon name="ellipsis-vertical"></ion-icon>
+             </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Our refresh page-->
+  <app-pull-to-refresh [refreshFn]="refreshPage.bind(this)"></app-pull-to-refresh>
+</ion-content>
